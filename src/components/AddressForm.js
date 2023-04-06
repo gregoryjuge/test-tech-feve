@@ -91,7 +91,9 @@ function AddressForm() {
     >
       <div className="w-full max-w-md">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-xl font-bold mb-4">Formulaire</h2>
+          <h2 className="mb-4 text-4xl italic text-yellow-400">
+            Le prix des Terres
+          </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="address" className="block font-medium mb-2">
               Adresse à estimer :
@@ -158,7 +160,7 @@ function AddressForm() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded"
             >
               Envoyer
             </button>

@@ -40,11 +40,11 @@ function DepartementAverage() {
   }, [departement]);
 
   return (
-    <div data-testid="departement-average" className="mt-4">
+    <div data-testid="departement-average" className="m-4 text-center">
       {average !== null ? (
         <p className="text-lg font-semibold text-primary-500">
           La valeur moyenne dans le département {departement} est de{" "}
-          <span className="text-secondary-600">{average} €</span>.
+          <span className="text-secondary-600">{Math.round(average)} €</span>.
         </p>
       ) : (
         <p className="text-gray-500 italic">
