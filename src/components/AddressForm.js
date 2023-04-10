@@ -9,6 +9,8 @@ function AddressForm() {
   const [selectedAddress, setSelectedAddress] = useState("");
   const [addressValue, setAddressValue] = useState("");
   const [geoData, setGeoData] = useState(null);
+  const [error, setError] = useState("");
+
   const {
     control,
     handleSubmit,
@@ -39,7 +41,6 @@ function AddressForm() {
         surface_terrain_terresetpres: data.surface,
       },
     };
-
     try {
       const response = await axios.post(
         "https://dataiku-api.vercel.app/predict",
@@ -49,6 +50,9 @@ function AddressForm() {
       console.log(response.data.result);
     } catch (error) {
       console.error("Error submitting the form:", error);
+      if (error.response.status === 500) {
+        setError("Adresse introuvable");
+      }
     }
     setLoading(false);
   };
@@ -175,6 +179,11 @@ function AddressForm() {
           ) : result && result.prediction !== null ? (
             <Result prediction={result.prediction} />
           ) : null}
+          {error && (
+            <div className="text-center mt-4">
+              <p className="text-red-500">Adresse introuvable</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
