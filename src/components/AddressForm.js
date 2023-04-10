@@ -14,6 +14,7 @@ function AddressForm() {
   const {
     control,
     handleSubmit,
+
     formState: { errors },
   } = useForm();
   const [result, setResult] = useState(null);
@@ -88,6 +89,10 @@ function AddressForm() {
     }
   }, [addressValue, selectedAddress]);
 
+  function refreshPageButton() {
+    window.location.reload(false);
+  }
+
   return (
     <div
       data-testid="address-form"
@@ -124,6 +129,7 @@ function AddressForm() {
                       )
                     );
                   }}
+                  onFocus={() => setResult(null)}
                   placeholder="Adresse"
                   noOptionsMessage={() => "Aucune suggestion"}
                 />
@@ -162,12 +168,21 @@ function AddressForm() {
                 </span>
               )}
             </div>
-            <button
-              type="submit"
-              className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded"
-            >
-              Envoyer
-            </button>
+            <div className="flex">
+              <button
+                type="submit"
+                className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded"
+              >
+                Envoyer
+              </button>
+              <button
+                onClick={refreshPageButton}
+                type="submit"
+                className="hover:bg-slate-300 text-white font-bold mx-12 py-2 px-4 rounded"
+              >
+                ❌
+              </button>
+            </div>
           </form>
           {loading ? (
             <div className="text-center mt-4">
